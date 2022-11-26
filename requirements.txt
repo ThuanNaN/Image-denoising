@@ -1,2 +1,6 @@
+streamlit
 torch
 einops
+opencv-python
+tqdm
+scikit-image

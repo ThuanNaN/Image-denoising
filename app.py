@@ -1,17 +1,20 @@
+import os
+import cv2
+import torch
+import numpy as np
 import streamlit as st
 from PIL import Image
 from io import BytesIO
-import numpy as np
+
 from models import load_Restormer, predict_Restormer
 
 
+device = "cuda:0" if torch.cuda.is_available() else "cpu"
 
 model = load_Restormer()
+model.to(device)
 
 
-def load_image(image_file):
-	img = Image.open(image_file)
-	return img
 
 choice = "Image"
 
@@ -21,18 +24,21 @@ if choice == "Image":
 
     if image_file is not None:
 
+        
+
         img_array = np.array(Image.open(image_file))
+        img_array = cv2.resize(img_array, (100,100))
 
-        result_img = predict_Restormer(model, img_array, device = "cpu")
+        st.image(img_array,width=500)
 
+        result = predict_Restormer(model, img_array, device)
 
-        # # To See details
-        # file_details = {"filename":image_file.name, "filetype":image_file.type,
-        #                 "filesize":image_file.size}
-        # st.write(file_details)
+        st.write(
+            {
+                "Status": result["status"]
+            })
 
-        # To View Uploaded Image
-        st.image(load_image(result_img),width=250)
+        st.image(result["data"],width=500)
 
 
 
