@@ -6,7 +6,7 @@ import numpy as np
 from distutils.version import LooseVersion
 import torchvision
 if LooseVersion(torchvision.__version__) >= LooseVersion('0.9.0'):
-    from model.deform_conv import ModulatedDeformableConv2d as DCN
+    from SADNet.model.deform_conv import ModulatedDeformableConv2d as DCN
 else:
     try:
         from dcn.deform_conv import ModulatedDeformConvPack2 as DCN

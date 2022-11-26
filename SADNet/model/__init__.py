@@ -1,6 +1,5 @@
-from model.sadnet import SADNET
+from SADNet.model.sadnet import SADNET
 
 
-def make_model(input_channel, output_channel, args):
-    if args.NetName == 'SADNET':
-        return SADNET(input_channel, output_channel, args.n_channel, args.offset_channel)
+def make_model(input_channel, output_channel):
+    return SADNET(input_channel, output_channel, 32, 32)

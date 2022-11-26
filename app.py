@@ -6,14 +6,17 @@ import streamlit as st
 from PIL import Image
 from io import BytesIO
 
-from models import load_Restormer, predict_Restormer
+from models import load_model, predict_Restormer, predict_SADNet
 
 
-device = "cuda:0" if torch.cuda.is_available() else "cpu"
+device = "cuda" if torch.cuda.is_available() else "cpu"
 
-model = load_Restormer()
-model.to(device)
 
+Restormer_model = load_model("Restormer")
+Restormer_model.to(device)
+
+SADNet_model  = load_model("SADNet")
+SADNet_model.to(device)
 
 
 choice = "Image"
@@ -31,7 +34,8 @@ if choice == "Image":
 
         st.image(img_array,width=500)
 
-        result = predict_Restormer(model, img_array, device)
+        # result = predict_Restormer(Restormer_model, img_array, device)
+        result = predict_SADNet(SADNet_model, img_array, device)
 
         st.write(
             {
