@@ -72,7 +72,7 @@ def predict_Restormer(model, image, device):
 
         return {
                 "data": restored,
-                "status": "Succes"
+                "status": "Success"
                 }
     except:
         return {
@@ -106,7 +106,7 @@ def predict_SADNet(model, image, device):
 
         return {
             "data": result_img,
-            "status": "Succes"
+            "status": "Success"
             }
 
     except:
