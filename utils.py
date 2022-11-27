@@ -2,6 +2,9 @@ import wget
 import os
 import gdown
 import cv2
+import zipfile
+
+
 
 def download_RestormerW():
     path_save = os.path.join("Restormer",'Denoising', 'pretrained_models')
@@ -10,8 +13,10 @@ def download_RestormerW():
 
 
 def download_SADW():
-    w_ID = "10HdJeTwvcJ804lQOZPk4fMLJEQaJx8Yc"
+    w_ID = "14noNlvYv_uIN0y2T3RzchxFAZ4PW7PI8"
     gdown.download(id=w_ID, output = "./SADNet/")
+    with zipfile.ZipFile("./SADNet/SADNET_color_sig50.zip", 'r') as zip_ref:
+        zip_ref.extractall("./SADNet/ckpt/")
 
 
 def resize_img(image, ratio):

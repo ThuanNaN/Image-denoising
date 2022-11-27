@@ -11,7 +11,7 @@ import numpy as np
 
 
 
-from utils import download_RestormerW
+from utils import download_RestormerW, download_SADW
 
 
 def load_model(model_name):
@@ -32,6 +32,13 @@ def load_model(model_name):
         
         return model
     elif model_name == "SADNet":
+
+        # SADNET_color_sig50
+        weights = os.path.join("SADNet",'ckpt', 'SADNET_color_sig50')
+        if not os.path.exists(weights):
+            download_SADW()
+
+
         input_channel, output_channel = 3, 3
         model = make_model(input_channel, output_channel)
         if torch.cuda.is_available():
