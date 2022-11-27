@@ -11,3 +11,4 @@ def download_RestormerW():
 def download_SADW():
     w_ID = "10HdJeTwvcJ804lQOZPk4fMLJEQaJx8Yc"
     gdown.download(id=w_ID, output = "./SADNet/")
+    

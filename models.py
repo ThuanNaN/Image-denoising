@@ -90,7 +90,6 @@ def predict_SADNet(model, image, device):
         img_test = transforms.functional.to_tensor(noisy)
         img_test = img_test.unsqueeze_(0).float()
         img_test = img_test.to(device)
-        print(img_test)
         
         torch.cuda.synchronize()
         with torch.no_grad():

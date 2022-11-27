@@ -4,3 +4,5 @@ einops
 opencv-python
 tqdm
 scikit-image
+wget
+gdown
